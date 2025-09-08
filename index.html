@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Portfolio </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            border-right: 2px solid #09b4caff;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 5.5s steps(35, end) infinite alternate, 
+                       blink-caret .80s step-end infinite;
+                       
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #8b5cf6; }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Card Hover Effect */
+        .card-hover {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Progress Bar Animation */
+        .progress-bar {
+            transition: width 2s ease-in-out;
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(180deg, #8b5cf6, #ec4899);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.8rem;
+            top: 0.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #8b5cf6;
+            border: 4px solid #0f172a;
+            box-shadow: 0 0 0 3px #8b5cf6;
+        }
+
+        /* Skill Bars */
+        .skill-container {
+            background: #374151;
+            border-radius: 25px;
+            overflow: hidden;
+            height: 12px;
+            margin: 10px 0;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-level::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Contact Form Styles */
+        .form-input {
+            background: rgba(55, 65, 81, 0.5);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            outline: none;
+        }
+
+        /* Button Styles */
+        .gradient-btn {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .gradient-btn:hover::before {
+            left: 100%;
+        }
+
+        .gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float-particle 6s ease-in-out infinite;
+        }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+          @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.3s ease forwards;
+  }
+  #typewriter-text::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+    margin-left: 3px;
+    color: #a855f7; /* ungu */
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+/* Efek saat tombol diklik */
+.btn-click-effect {
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.95);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-click-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(15);
+    opacity: 0;
+  }
+}
+/* Efek Hover Shine */
+.gradient-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #7e22ce, #9333ea);
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gradient-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
+}
+
+/* Shine effect */
+.gradient-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: skewX(-25deg);
+}
+
+.gradient-btn:hover::before {
+  animation: shine 0.8s ease;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+  <!-- POPUP INTRO -->
+<div id="intro-popup" class="fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-center items-center z-50 transition-opacity duration-500">
+  <h1 class="text-4xl md:text-6xl font-bold text-purple-400 mb-6 animate-bounce">
+    Selamat Datang
+  </h1>
+  <button id="enter-btn" class="gradient-btn text-lg px-6 py-3">
+    Klik untuk Masuk
+  </button>
+</div>
+
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800 py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div class="text-1xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+                   Curriculum Vitae
+                </div>
+                
+               <div class="hidden md:flex space-x-3">
+    <a href="#home" class="nav-link text-white hover:text-purple-400 transition-colors">Beranda</a>
+    <a href="#about" class="nav-link text-white hover:text-purple-400 transition-colors">Tentang</a>
+    <a href="#education" class="nav-link text-white hover:text-purple-400 transition-colors">Pendidikan</a>
+       <a href="#experience" class="nav-link text-white hover:text-purple-400 transition-colors">Pengalaman</a>
+    <a href="#skills" class="nav-link text-white hover:text-purple-400 transition-colors">Keahlian</a>
+        <a href="#strengths" class="nav-link text-white hover:text-purple-400 transition-colors">Kelebihan Pribadi</a>
+    <a href="#portfolio" class="nav-link text-white hover:text-purple-400 transition-colors">Portfolio</a>
+    <a href="#contact" class="nav-link text-white hover:text-purple-400 transition-colors">Kontak</a>
+    <a href="#career-goals" class="nav-link text-white hover:text-purple-400 transition-colors">Tujuan</a>
+    
+</div>
+
+                
+                <button class="md:hidden text-xl text-purple-400">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <ul id="mobile-menu" class="hidden flex-col bg-black text-gray-300 space-y-4 px-6 py-4 md:hidden transition-all duration-300 ease-in-out">
+    <li><a href="#home" class="hover:text-purple-400">Beranda</a></li>
+    <li><a href="#about" class="hover:text-purple-400">Tentang</a></li>
+    <li><a href="#education" class="hover:text-purple-400">Pendidikan</a></li>
+    <li><a href="#experience" class="hover:text-purple-400">Pengalaman</a></li>
+    <li><a href="#skills" class="hover:text-purple-400">Keahlian</a></li>
+    <li><a href="#strengths" class="hover:text-purple-400">Kelebihan Pribadi</a></li>
+    <li><a href="#portfolio" class="hover:text-purple-400">Portfolio</a></li>
+    <li><a href="#contact" class="hover:text-purple-400">Kontak</a></li>
+    <li><a href="#career-goals" class="hover:text-purple-400">Tujuan</a></li>
+</ul>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden parallax" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="particles" id="particles"></div>
+        
+        <div class="container mx-auto px-6 text-center z-5">
+            <div class="floating mb-8">
+                <img src="azs.jpg" 
+                     alt="Foto Profil" 
+                     class="w-48 h-48 rounded-full mx-auto border-4 border-purple-500 shadow-2xl shadow-purple-500/50">
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+                    Azis
+                
+                </span>
+            </h1>
+            
+<div class="typewriter-container flex justify-center items-center text-center px-4">
+    <p class="text-1xl md:text-1xl text-gray-300 typewriter">
+       "Jangan takut gagal, itu bagian dari proses menuju sukses"
+    </p>
+</div>
+
+
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button class="gradient-btn" onclick="scrollToSection('portfolio')">
+                    <i class="fas fa-images mr-2"></i>Lihat Portfolio
+                </button>
+                <button class="gradient-btn" onclick="scrollToSection('contact')">
+                    <i class="fas fa-paper-plane mr-2"></i>Hubungi Saya
+                </button>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-2xl text-purple-400">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title fade-in typewriter">Tentang Saya</h2>
+            
+          
+                <div class="fade-in">
+                    <p class="text-lg text-gray-300 mb-6">
+                        Lulusan SMK Rekayasa Perangkat Lunak yang memiliki kemampuan analisis, ketelitian, dan adaptasi yang baik. Terbiasa bekerja secara terstruktur dan mampu mengikuti arahan dengan cepat. Siap mengembangkan potensi dan memberikan kinerja terbaik.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+    <div class="text-center p-6 bg-gray-800 rounded-2xl card-hover">
+        <div class="text-3xl font-bold text-purple-400 mb-2">1+</div>
+        <div class="text-gray-300">Pengalaman Magang</div>
+    </div>
+    <div class="text-center p-6 bg-gray-800 rounded-2xl card-hover">
+        <div class="text-3xl font-bold text-purple-400 mb-2">100%</div>
+        <div class="text-gray-300">Komitmen & Disiplin</div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="education" class="bg-gray-900">
+    <div class="container mx-auto px-6">
+        <h2 class="section-title fade-in typewriter">pendidikan</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <h3 class="text-2xl font-bold text-purple-400 mb-2">SMk al-ma'mun cibugel</h3>
+                <p class="text-gray-400 mb-2">lulusan 2024                                                                                                                                                                                                                                                         /2025</p>
+                <p class="text-gray-300">
+                    Lulus dari jurusan <strong>Rekayasa Perangkat Lunak</strong> dengan kompetensi keahlian
+                    pemrograman web, pemrograman desktop, manajemen database, dan jaringan dasar.
+                    Aktif mengikuti proyek pembuatan aplikasi internal sekolah dan kegiatan magang industri
+                    di bidang IT support.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title fade-in typewriter">pengalaman</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">Pengembangan Aplikasi Website</h3>
+                    <p class="text-gray-400 mb-2">2024-2025</p>
+                    <p class="text-gray-300"> Merancang dan membangun aplikasi web sederhana menggunakan Html,PHP, CSS, javascript 
+<p class="text-gray-300"> Belajar mandiri dan menyelesaikan proyek dengan penuh tanggung jawab 
+
+                  </p>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">PKL (Peraktek kerja lapangan) </h3>
+                    <p class="text-gray-400 mb-2">3 bulan</p>
+                    <p class="text-gray-300">Membantu kegiatan administrasi kantor seperti infut data, foto, pengarsipan dokumen, dan surat menyurat 
+</p>
+<p class="text-gray-300">Mengoperasikan komputer dengan aplikasi Microsoft office (word, Excel, powerpoint)
+Belajar etika kerja, disiplin waktu,dan kerja tim di lingkungan profesional 
+
+</p>
+                </div>
+                
+                <div class="timeline-item fade-in">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-2">Bisnis Online dan Pengemasan Produk
+</h3>
+                    <p class="text-gray-400 mb-2">2021-2022</p>
+                    <p class="text-gray-300">Membantu menjalankan usaha kecil milik orang lain seperti toko atau penjualan online
+</p>
+                <p class="text-gray-300">Bertugas melayani pembeli, mencatat pesanan, dan menangani transaksi secara langsung
+</p>
+<p class="text-gray-300">Mengemas (packing) barang sebelum dikirim ke pelanggan</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-gray-900">
+        <div class="container mx-auto px-6">
+          <h2 class="section-title fade-in typewriter">keahlian</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <!-- Kolom 1 -->
+  <div class="fade-in">
+    <h3 class="text-xl font-semibold mb-6 text-purple-400">Keahlian Teknis</h3>
+
+    <!-- Pemrograman -->
+    <div class="mb-6">
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-300">Pemrograman Web Dasar (HTML, PHP, CSS, JavaScript)</span>
+        <span class="text-purple-400">80%</span>
+      </div>
+      <div class="skill-container">
+        <div class="skill-level" style="width: 80%;"></div>
+      </div>
+    </div>
+
+    <!-- Desain Grafis -->
+    <div class="mb-6">
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-300">Desain Grafis Dasar (Canva)</span>
+        <span class="text-purple-400">85%</span>
+      </div>
+      <div class="skill-container">
+        <div class="skill-level" style="width: 85%;"></div>
+      </div>
+    </div>
+
+    <!-- Microsoft Office -->
+    <div class="mb-6">
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-300">Microsoft Office (Word, Excel, PowerPoint)</span>
+        <span class="text-purple-400">80%</span>
+      </div>
+      <div class="skill-container">
+        <div class="skill-level" style="width: 80%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kolom 2 -->
+  <div class="fade-in">
+    <h3 class="text-xl font-semibold mb-6 text-purple-400">Keahlian Umum</h3>
+
+    <!-- Administrasi -->
+    <div class="mb-6">
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-300">Administrasi Kantor</span>
+        <span class="text-purple-400">75%</span>
+      </div>
+      <div class="skill-container">
+        <div class="skill-level" style="width: 75%;"></div>
+      </div>
+    </div>
+
+    <!-- Email & Drive -->
+    <div class="mb-6">
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-300">Email & Google Drive</span>
+        <span class="text-purple-400">85%</span>
+      </div>
+      <div class="skill-container">
+        <div class="skill-level" style="width: 85%;"></div>
+      </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="strengths" class="bg-gray-800">
+    <div class="container mx-auto px-6">
+   <h2 class="section-title fade-in typewriter">kelebihan pribadi</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="p-6 bg-gray-700 rounded-2xl card-hover fade-in text-center">
+                <i class="fas fa-bolt text-purple-400 text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Jujur, disiplin dan pekerja keras </h3>
+                <p class="text-gray-300">
+                    Walaupun saya masih pemula, saya cepat beradaptasi dan mau belajar untuk memberikan hasil terbaik.                </p>
+            </div>
+            <div class="p-6 bg-gray-700 rounded-2xl card-hover fade-in text-center">
+                <i class="fas fa-users text-purple-400 text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Kerja Sama Tim</h3>
+                <p class="text-gray-300">
+                    Terbiasa bekerja dalam tim dengan komunikasi yang baik, mendukung produktivitas.
+                </p>
+            </div>
+            <div class="p-6 bg-gray-700 rounded-2xl card-hover fade-in text-center">
+    <i class="fas fa-cogs text-purple-400 text-3xl mb-4"></i>
+    <h3 class="text-xl font-semibold text-white mb-2">Teliti dan siap menyelesaikan tugas dengan penuh tanggung jawab</h3>
+    <p class="text-gray-300">
+        Menjaga ketelitian dan ketepatan waktu dalam menyelesaikan pekerjaan,
+    </p>
+</div>
+
+            <div class="p-6 bg-gray-700 rounded-2xl card-hover fade-in text-center">
+                <i class="fas fa-lightbulb text-purple-400 text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Siap belajar dan mengikuti arahan dengan baik.</h3>
+                <p class="text-gray-300">
+                    Memiliki kemampuan menganalisis masalah dan mencari solusi yang efektif untuk mendukung kelancaran produksi.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="bg-gray-900 py-16">
+  <div class="container mx-auto px-6">
+    <!-- Section Title -->
+    <h2 class="text-4xl font-bold text-center text-white mb-12 tracking-wide relative">
+      <span class="border-b-4 border-yellow-400 pb-2">Portfolio</span>
+    </h2>
+
+    <!-- Portfolio Grid -->
+    <!-- Sertifikat 1 -->
+<div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+  <a href="SV.jpg" target="_blank">
+    <div class="w-full aspect-[4/3] overflow-hidden">
+      <img src="SV.jpg" alt="Sertifikat 1" class="w-full h-full object-cover object-center">
+    </div>
+  </a>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-white">Sertifikat Penghargaan</h3>
+    <p class="text-gray-400 mb-3">29 April 2025</p>
+    <p class="text-gray-300 text-sm leading-relaxed">
+      Atas partisipasinya sebagai peserta pada acara Workshop <b>"Kesiapan Kerja – Strategi Menghadapi Wawancara Kerja"</b>
+    </p>
+  </div>
+</div>
+
+<!-- Sertifikat 2 -->
+<div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+  <a href="SV2.jpg" target="_blank">
+    <div class="w-full aspect-[4/3] overflow-hidden">
+      <img src="SV2.jpg" alt="Sertifikat 2" class="w-full h-full object-cover object-center">
+    </div>
+  </a>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-white">Sertifikat Penghargaan</h3>
+    <p class="text-gray-400 mb-3">Februari 2025</p>
+    <p class="text-gray-300 text-sm leading-relaxed">
+      Atas partisipasinya sebagai peserta pada Workshop <b>"Budaya Kerja"</b> yang diselenggarakan pada bulan Februari 2025
+    </p>
+  </div>
+</div>
+
+<!-- Sertifikat 3 -->
+<div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+  <a href="SV3.jpg" target="_blank">
+    <div class="w-full aspect-[4/3] overflow-hidden">
+      <img src="SV3.jpg" alt="Sertifikat 3" class="w-full h-full object-cover object-center">
+    </div>
+  </a>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-white">Sertifikat Penghargaan</h3>
+    <p class="text-gray-400 mb-3">Sumedang, 20 Februari 2025</p>
+    <p class="text-gray-300 text-sm leading-relaxed">
+      Atas partisipasinya sebagai peserta pada Workshop <b>"Kesiapan Kerja"</b>
+    </p>
+  </div>
+</div>
+  </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-900">
+        <div class="container mx-auto px-6">
+    <h2 class="section-title fade-in typewriter">Kontak</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6 text-white">Yth..</h3>
+                    <p class="text-gray-300 mb-8">
+                        Silakan hubungi saya melalui informasi di bawah ini atau isi form kontak.
+                    </p>
+                    
+          <div class="space-y-6">
+  <!-- Email -->
+  <div class="flex items-center p-4 bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow">
+    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+      <i class="fas fa-envelope text-white text-xl"></i>
+    </div>
+    <div>
+      <p class="text-gray-400 text-sm">Email</p>
+      <p class="text-white font-medium">azis.mun2025@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- WhatsApp -->
+  <div class="flex items-center p-4 bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow">
+    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+      <i class="fab fa-whatsapp text-white text-2xl"></i>
+    </div>
+    <div>
+      <p class="text-gray-400 text-sm">WhatsApp</p>
+      <a 
+        href="https://wa.me/6282191341158" 
+        target="_blank" 
+        class="block text-green-400 font-medium hover:underline"
+      >
+        +62 821-9134-1158
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+    </div>
+
+    <!-- Alamat -->
+    <div class="flex items-center p-4 bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow">
+        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+            <i class="fas fa-map-marker-alt text-white text-xl"></i>
+        </div>
+        <div>
+            <p class="text-gray-400 text-sm">Alamat</p>
+            <p class="text-white font-medium">Sumedang-bandung</p>
+        </div>
+    </div>
+</div>
+
+               <div class="flex justify-center items-center min-h-screen bg-gray-900">
+    <form action="https://formspree.io/f/mnnbbvpe" method="POST" 
+          class="bg-gray-800 p-8 rounded-2xl w-full max-w-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-purple-500/50">
+        <!-- Nama Lengkap -->
+        <div class="mb-6">
+            <label class="block text-gray-300 mb-2">Nama Perusahaan</label>
+            <input type="text" name="Nama" required 
+                   class="w-full rounded-lg p-3 bg-gray-700 text-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition">
+        </div>
+        
+        <!-- Email -->
+        <div class="mb-6">
+            <label class="block text-gray-300 mb-2">Email</label>
+            <input type="email" name="Email" required 
+                   class="w-full rounded-lg p-3 bg-gray-700 text-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition">
+        </div>
+        
+        <!-- Pesan -->
+        <div class="mb-6">
+            <label class="block text-gray-300 mb-2">Pesan</label>
+            <textarea name="Pesan" required 
+                      class="w-full h-32 rounded-lg p-3 bg-gray-700 text-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition"></textarea>
+        </div>
+        
+        <!-- Tombol -->
+        <button type="submit" 
+                class="gradient-btn w-full py-3 text-lg font-semibold rounded-xl transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50">
+            <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+        </button>
+    </form>
+</div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+                Curriculum Vitae
+            </div>
+            <p class="text-gray-400 mb-6">komitmen pada pengembangan diri, ketekunan dalam mengejar tujuan, kemampuan adaptasi terhadap perubahan, dan sikap proaktif dalam mengambil peluang.</p>
+            
+            <div class="flex justify-center space-x-6 mb-6">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/azys117/" target="_blank" 
+       class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
+        <i class="fab fa-instagram text-white text-xl"></i>
+    </a>
+
+    <!-- Telegram -->
+    <a href="https://t.me/usernamekamu" target="_blank" 
+       class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
+        <i class="fab fa-telegram-plane text-white text-xl"></i>
+    </a>
+</div>
+<section id="career-goals" class="bg-gray-900 py-12">
+  <div class="container mx-auto px-6">
+    <!-- Judul -->
+    <h2 class="section-title fade-in text-3xl md:text-4xl font-bold text-purple-400 text-center mb-6">
+      Tujuan saya
+    </h2>
+
+    <!-- Deskripsi dengan Animasi Typewriter -->
+    <div class="fade-in text-center max-w-3xl mx-auto">
+      <p id="typewriter-text" class="text-sm md:text-base text-gray-300 leading-relaxed whitespace-pre-line break-words min-h-[150px] md:min-h-[180px]">
+        <!-- Teks akan diketik otomatis -->
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Script Typewriter -->
+<script>
+  const text = `Saya memiliki tujuan untuk berkembang di dunia industri.
+Saya ingin mengasah keterampilan teknis, meningkatkan kecepatan dan ketelitian dalam bekerja,
+serta berkontribusi untuk mencapai target perusahaan dengan kualitas hasil kerja terbaik.
+Dalam jangka panjang, saya ingin mendapatkan pengalaman yang lebih luas
+dan berperan penting dalam mendukung inovasi serta efisiensi.`;
+
+  let index = 0;
+  const speed = 40; // Kecepatan ketikan
+  const typewriter = document.getElementById('typewriter-text');
+
+  function typeEffect() {
+    if (index < text.length) {
+      typewriter.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, speed);
+    }
+  }
+
+  // Jalankan animasi setelah halaman dimuat
+  window.addEventListener('load', typeEffect);
+</script>
+
+
+
+            
+            <p class="text-gray-400">website azis.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create particles for background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Fade in on scroll
+        function checkFadeIn() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Animate skill bars
+        function animateSkills() {
+            const skillLevels = document.querySelectorAll('.skill-level');
+            skillLevels.forEach(skill => {
+                const width = skill.style.width;
+                skill.style.width = '0';
+                setTimeout(() => {
+                    skill.style.width = width;
+                }, 500);
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            checkFadeIn();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', checkFadeIn);
+            
+            // Animate skills when skills section is in view
+            const skillsSection = document.getElementById('skills');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSkills();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            if (skillsSection) {
+                observer.observe(skillsSection);
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <script>
+    const menuBtn = document.querySelector("nav button");
+    const menuLinks = document.querySelector("nav .md\\:flex");
+    
+    menuBtn.addEventListener("click", () => {
+        menuLinks.classList.toggle("hidden");
+        menuLinks.classList.toggle("flex");
+        menuLinks.classList.toggle("flex-col");
+        menuLinks.classList.toggle("bg-black");
+        menuLinks.classList.toggle("absolute");
+        menuLinks.classList.toggle("top-16");
+        menuLinks.classList.toggle("w-full");
+        menuLinks.classList.toggle("p-4");
+    });
+</script>
+<script>
+  <button id="menu-toggle" class="md:hidden text-xl text-purple-400">
+    <i class="fas fa-bars"></i>
+</button>
+
+
+  toggleBtn.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex', 'animate-slideDown');
+    } else {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex', 'animate-slideDown');
+    }
+  });
+</script>
+<script>
+  // Ambil semua tombol dengan class gradient-btn
+  const buttons = document.querySelectorAll('.gradient-btn');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      // Hapus efek sebelumnya jika ada
+      this.classList.remove('btn-click-effect');
+
+      // Paksa reflow untuk restart animasi
+      void this.offsetWidth;
+
+      // Tambahkan efek baru
+      this.classList.add('btn-click-effect');
+
+      // Hapus efek setelah selesai (biar bisa dipakai klik lagi)
+      setTimeout(() => {
+        this.classList.remove('btn-click-effect');
+      }, 600);
+    });
+  });
+</script>
+<script>
+  const introPopup = document.getElementById('intro-popup');
+  const enterBtn = document.getElementById('enter-btn');
+
+  // Saat tombol diklik
+  enterBtn.addEventListener('click', () => {
+    introPopup.classList.add('fade-out');
+    setTimeout(() => {
+      introPopup.style.display = 'none';
+    }, 500); // waktu sinkron dengan transition
+  });
+</script>
+
+
+</body>
+</html>
+
